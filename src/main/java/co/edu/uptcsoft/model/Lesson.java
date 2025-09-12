@@ -7,11 +7,7 @@ public class Lesson {
 
     @Override
     public String toString() {
-        return "Lesson{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", type='" + type + '\'' +
-                '}';
+        return "Lesson [id=" + id + ", title=" + title + ", type=" + type + "]";
     }
 
     public Lesson() {
