@@ -1,22 +1,17 @@
 package co.edu.uptcsoft.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Module {
     private String id;
     private String title;
-    private List<Lesson> lessons;
 
     @Override
     public String toString() {
-        return "Module [id=" + id + ", title=" + title + ", lessons=" + lessons + "]";
+        return "Module [id=" + id + ", title=" + title + "]";
     }
 
-    public Module(String id, String title, List<Lesson> lessons) {
+    public Module(String id, String title) {
         this.id = id;
         this.title = title;
-        lessons = new ArrayList<>();;
     }
 
     public String getId() {
@@ -35,11 +30,4 @@ public class Module {
         this.title = title;
     }
 
-    public List<Lesson> getLessons() {
-        return lessons;
-    }
-
-    public void setLessons(List<Lesson> lessons) {
-        this.lessons = lessons;
-    }
 }
