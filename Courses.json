@@ -1,0 +1,61 @@
+{
+  "data": "Catálogo de Cursos",
+  "children": [
+    {
+      "data": {
+        "id": "C1",
+        "title": "Java Básico"
+      },
+      "children": [
+        {
+          "data": {
+            "id": "M1",
+            "title": "Introducción a Java"
+          },
+          "children": [
+            {
+              "data": {
+                "id": "L1",
+                "title": "Variables y Tipos",
+                "type": "sff"
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "data": {
+        "id": "C2",
+        "title": "Estructuras de Datos"
+      },
+      "children": [
+        {
+          "data": {
+            "id": "M2",
+            "title": "Listas y Árboles"
+          },
+          "children": [
+            {
+              "data": {
+                "id": "L2",
+                "title": "Variables y Tipos",
+                "type": "sff"
+              },
+              "children": []
+            },
+            {
+              "data": {
+                "id": "L3",
+                "title": "Variables y Tipos",
+                "type": "sff"
+              },
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

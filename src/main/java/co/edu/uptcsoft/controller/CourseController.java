@@ -1,15 +1,41 @@
 package co.edu.uptcsoft.controller;
 
-import java.util.List;
+import co.edu.uptcsoft.model.*;
+import co.edu.uptcsoft.model.Module;
+import co.edu.uptcsoft.persistence.CourseDAO;
 
-import co.edu.uptcsoft.model.Course;
+public class CourseController {
+    private CourseManager courseManager;
+    private CourseDAO courseDAO;
 
-public class CourseController { //clase para crear actualizar y eliminar nodos del arbol 
-    private List<Course> courses;
+    public CourseController() {
+        courseManager = new CourseManager();
+        courseDAO = new CourseDAO();
+    }
 
-    public CourseController(List<Course> courses) {
-        this.courses = courses;
-    } 
+    // CRUD Cursos
+    public void addCourse(Course course) {
+        courseManager.addCourse(course);
+    }
 
-    
+    public void addModule(String courseId, Module module) {
+        courseManager.addModule(courseId, module);
+    }
+
+    public void addLesson(String moduleId, Lesson lesson) {
+        courseManager.addLesson(moduleId, lesson);
+    }
+
+    public void printTree() {
+        courseManager.printTree();
+    }
+
+    // Persistencia
+    public void saveData() {
+        courseDAO.save(courseManager.getRoot());
+    }
+
+    public void loadData() {
+        courseManager.setRoot(courseDAO.load());
+    }
 }

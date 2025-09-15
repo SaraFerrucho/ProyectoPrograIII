@@ -1,34 +1,31 @@
 package co.edu.uptcsoft.persistence;
 
-import co.edu.uptcsoft.model.Course;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.*;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
+import co.edu.uptcsoft.model.TreeNode;
 
 public class CourseDAO {
-    private static final String archiveCourse = "resources-data/courses.json";
+    private static final String file = "Courses.json";
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    public List<Course> loadCourses() {
-        try (FileReader reader = new FileReader(archiveCourse)) {
-            Type listType = new TypeToken<List<Course>>() {}.getType();
-            List<Course> courses = gson.fromJson(reader, listType);
-            return (courses != null) ? courses : new ArrayList<>();
+    // Guardar árbol completo
+    public void save(TreeNode<Object> root) {
+        try (FileWriter writer = new FileWriter(file)) {
+            gson.toJson(root, writer);
         } catch (IOException e) {
-            return new ArrayList<>();
+            System.err.println("Error al guardar: " + e.getMessage());
         }
     }
-    
-    public void saveCourses(List<Course> courses) {
-        try (FileWriter writer = new FileWriter(archiveCourse)) {
-            gson.toJson(courses, writer);
+
+    // Cargar árbol completo
+    public TreeNode<Object> load() {
+        try (FileReader reader = new FileReader(file)) {
+            return gson.fromJson(reader, TreeNode.class);
         } catch (IOException e) {
-            System.err.println("Error al guardar cursos: " + e.getMessage());
+            System.err.println("No se pudo cargar el archivo, creando uno nuevo...");
+            return new TreeNode<>("Catálogo de Cursos");
         }
     }
 }
