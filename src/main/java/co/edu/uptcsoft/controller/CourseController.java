@@ -5,11 +5,11 @@ import co.edu.uptcsoft.model.Module;
 import co.edu.uptcsoft.persistence.CourseDAO;
 
 public class CourseController {
-    private CourseManager courseManager;
+    private CoursesManager courseManager;
     private CourseDAO courseDAO;
 
     public CourseController() {
-        courseManager = new CourseManager();
+        courseManager = new CoursesManager();
         courseDAO = new CourseDAO();
     }
 

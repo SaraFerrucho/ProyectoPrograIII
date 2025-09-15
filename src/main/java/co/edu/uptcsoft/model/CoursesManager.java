@@ -1,9 +1,9 @@
 package co.edu.uptcsoft.model;
 
-public class CourseManager {
+public class CoursesManager {
     private TreeNode<Object> root; // Raíz genérica del árbol
 
-    public CourseManager() {
+    public CoursesManager() {
         root = new TreeNode<>("Catálogo de Cursos");
     }
 
