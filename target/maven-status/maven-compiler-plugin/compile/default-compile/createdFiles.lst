@@ -1,0 +1,12 @@
+co\edu\uptcsoft\model\Module.class
+co\edu\uptcsoft\model\TreeNode.class
+co\edu\uptcsoft\service\ProgressService.class
+co\edu\uptcsoft\model\Course.class
+co\edu\uptcsoft\model\CoursesManager.class
+co\edu\uptcsoft\model\Student.class
+co\edu\uptcsoft\persistence\CourseDAO.class
+co\edu\uptcsoft\Main.class
+co\edu\uptcsoft\controller\CourseController.class
+co\edu\uptcsoft\persistence\ProgressRepository$1.class
+co\edu\uptcsoft\model\Lesson.class
+co\edu\uptcsoft\persistence\ProgressRepository.class
