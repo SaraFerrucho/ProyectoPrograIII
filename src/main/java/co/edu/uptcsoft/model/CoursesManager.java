@@ -33,11 +33,10 @@ public class CoursesManager {
         throw new CourseNotFoundException(id);
     }
 
-    // Actualizar un curso (versión simple)
+    // Actualizar un curso 
     public void updateCourse(String courseId, Course updatedCourse) throws CourseNotFoundException {
         Course course = findCourse(courseId);
         course.setTitle(updatedCourse.getTitle());
-        // Aquí puedes agregar más actualizaciones si el modelo crece
     }
 
     // Eliminar un curso
@@ -134,8 +133,7 @@ public class CoursesManager {
         module.getLessons().remove(lesson);
     }
 
-    // Devuelve un String con la estructura de cursos, módulos y lecciones en forma
-    // de árbol
+    // Devuelve un String con la estructura de cursos, módulos y lecciones en forma de árbol
     public String getCoursesAsString() {
         StringBuilder sb = new StringBuilder();
         for (Course course : courses) {
