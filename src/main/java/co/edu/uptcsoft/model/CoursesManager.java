@@ -3,58 +3,64 @@ package co.edu.uptcsoft.model;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class CoursesManager {
     private List<Course> courses;
 
     public CoursesManager() {
         courses = new ArrayList<>();
     }
+
     public void addCourse(Course course) {
         courses.add(course);
     }
 
-    public void addModule(String courseId, Module module) {
+    public boolean addModule(String courseId, Module module) {
         Course course = findCourse(courseId);
         if (course != null) {
             course.addModule(module);
+            return true;
         } else {
-            System.out.println("Curso no encontrado con ID: " + courseId);
+            return false;
         }
     }
 
-    public void addLesson(String courseId, String moduleId, Lesson lesson) {
+    public boolean addLesson(String courseId, String moduleId, Lesson lesson) {
         Course course = findCourse(courseId);
         if (course != null) {
             for (Module mod : course.getModules()) {
                 if (mod.getId().equals(moduleId)) {
                     mod.addLesson(lesson);
-                    return;
+                    return true;
                 }
             }
         }
-        System.out.println("Módulo no encontrado con ID: " + moduleId);
+        return false;
     }
 
     public Course findCourse(String id) {
         for (Course c : courses) {
-            if (c.getId().equals(id)) return c;
+            if (c.getId().equals(id))
+                return c;
         }
         return null;
     }
 
-    public void printCourses() {
+    // Devuelve un String de los cursos como un arbol
+    public String getCoursesAsString() {
+        StringBuilder sb = new StringBuilder();
         for (Course course : courses) {
-            System.out.println(course);
+            sb.append(course).append("\n");
             for (Module module : course.getModules()) {
-                System.out.println("  " + module);
+                sb.append("  ").append(module).append("\n");
                 for (Lesson lesson : module.getLessons()) {
-                    System.out.println("    " + lesson);
+                    sb.append("    ").append(lesson).append("\n");
                 }
             }
         }
+        return sb.toString();
     }
 
+    // Devuelve la lista completa (para poblar tablas en UI)
     public List<Course> getCourses() {
         return courses;
     }

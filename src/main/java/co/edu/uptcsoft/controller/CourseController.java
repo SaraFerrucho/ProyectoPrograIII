@@ -18,20 +18,28 @@ public class CourseController {
     }
 
     // CRUD Cursos
-    public void addCourse(Course course) {
-        courseManager.addCourse(course);
+    public void addCourse(String newCourseId, String newCourseTitle) {
+        Course newCourse = new Course(newCourseId, newCourseTitle);
+        courseManager.addCourse(newCourse);
     }
 
-    public void addModule(String courseId, Module module) {
-        courseManager.addModule(courseId, module);
+    public void addModule(String courseId, String newModuleId, String newCurseTitle) {
+        Module newModule = new Module(newModuleId, newCurseTitle);
+        courseManager.addModule(courseId, newModule);
     }
 
-    public void addLesson(String courseId, String moduleId, Lesson lesson) {
-        courseManager.addLesson(courseId, moduleId, lesson);
+    public void addLesson(String courseId, String moduleId, String newLessoId, String newLessonTitle,
+            String newLessonType) {
+        Lesson newLesson = new Lesson(newLessoId, newLessonTitle, newLessonType);
+        courseManager.addLesson(courseId, moduleId, newLesson);
     }
 
-    public void printCourses() {
-        courseManager.printCourses();
+    public String getCoursesAsString() {
+        return courseManager.getCoursesAsString();
+    }
+
+    public List<Course> getCourses() {
+        return courseManager.getCourses();
     }
 
     public void saveData() {
