@@ -7,6 +7,7 @@ import co.edu.uptcsoft.test.CourseNotFoundException;
 import co.edu.uptcsoft.test.DuplicateLessonException;
 import co.edu.uptcsoft.test.DuplicateModuleException;
 import co.edu.uptcsoft.test.ModuleNotFoundException;
+import co.edu.uptcsoft.test.LessonNotFoundException;
 
 public class CoursesManager {
     private List<Course> courses;
@@ -14,14 +15,43 @@ public class CoursesManager {
     public CoursesManager() {
         courses = new ArrayList<>();
     }
+    
+    ///////////// CURSOS
 
+    // Añadir un curso
     public void addCourse(Course course) {
         courses.add(course);
     }
 
+    // Buscar un curso por ID
+    public Course findCourse(String id) throws CourseNotFoundException {
+        for (Course c : courses) {
+            if (c.getId().equals(id)) {
+                return c;
+            }
+        }
+        throw new CourseNotFoundException(id);
+    }
+
+    // Actualizar un curso (versión simple)
+    public void updateCourse(String courseId, Course updatedCourse) throws CourseNotFoundException {
+        Course course = findCourse(courseId);
+        course.setTitle(updatedCourse.getTitle());
+        // Aquí puedes agregar más actualizaciones si el modelo crece
+    }
+
+    // Eliminar un curso
+    public void deleteCourse(String courseId) throws CourseNotFoundException {
+        Course course = findCourse(courseId);
+        courses.remove(course);
+    }
+
+    //////////// MÓDULOS
+
+    // Añadir un módulo a un curso
     public void addModule(String courseId, Module module)
             throws DuplicateModuleException, CourseNotFoundException {
-        Course course = findCourse(courseId); // lanza excepción si no existe
+        Course course = findCourse(courseId);
 
         for (Module m : course.getModules()) {
             if (m.getId().equals(module.getId())) {
@@ -32,35 +62,80 @@ public class CoursesManager {
         course.addModule(module);
     }
 
+    // Buscar un módulo dentro de un curso
+    private Module findModule(Course course, String moduleId) throws ModuleNotFoundException {
+        for (Module m : course.getModules()) {
+            if (m.getId().equals(moduleId)) {
+                return m;
+            }
+        }
+        throw new ModuleNotFoundException("Módulo no encontrado: " + moduleId);
+    }
+
+    // Actualizar un módulo
+    public void updateModule(String courseId, String moduleId, Module updatedModule)
+            throws CourseNotFoundException, ModuleNotFoundException {
+        Course course = findCourse(courseId);
+        Module module = findModule(course, moduleId);
+        module.setTitle(updatedModule.getTitle());
+    }
+
+    // Eliminar un módulo
+    public void deleteModule(String courseId, String moduleId)
+            throws CourseNotFoundException, ModuleNotFoundException {
+        Course course = findCourse(courseId);
+        Module module = findModule(course, moduleId);
+        course.getModules().remove(module);
+    }
+
+    /////////// LECCIONES
+
+    // Añadir una lección a un módulo dentro de un curso
     public void addLesson(String courseId, String moduleId, Lesson lesson)
             throws CourseNotFoundException, ModuleNotFoundException, DuplicateLessonException {
-        Course course = findCourse(courseId); // lanza excepción si no existe
+        Course course = findCourse(courseId);
+        Module module = findModule(course, moduleId);
 
-        for (Module mod : course.getModules()) {
-            if (mod.getId().equals(moduleId)) {
-                for (Lesson l : mod.getLessons()) {
-                    if (l.getId().equals(lesson.getId())) {
-                        throw new DuplicateLessonException(lesson.getId());
-                    }
-                }
-                mod.addLesson(lesson);
-                return;
+        for (Lesson l : module.getLessons()) {
+            if (l.getId().equals(lesson.getId())) {
+                throw new DuplicateLessonException(lesson.getId());
             }
         }
 
-        throw new ModuleNotFoundException(moduleId);
+        module.addLesson(lesson);
     }
 
-    public Course findCourse(String id) throws CourseNotFoundException {
-        for (Course c : courses) {
-            if (c.getId().equals(id)) {
-                return c;
+    // Buscar una lección dentro de un módulo
+    private Lesson findLesson(Module module, String lessonId) throws LessonNotFoundException {
+        for (Lesson l : module.getLessons()) {
+            if (l.getId().equals(lessonId)) {
+                return l;
             }
         }
-        throw new CourseNotFoundException(id);
+        throw new LessonNotFoundException("Lección no encontrada: " + lessonId);
     }
 
-    // Devuelve un String de los cursos como un árbol
+    // Actualizar una lección
+    public void updateLesson(String courseId, String moduleId, String lessonId, Lesson updatedLesson)
+            throws CourseNotFoundException, ModuleNotFoundException, LessonNotFoundException {
+        Course course = findCourse(courseId);
+        Module module = findModule(course, moduleId);
+        Lesson lesson = findLesson(module, lessonId);
+        lesson.setTitle(updatedLesson.getTitle());
+        lesson.setType(updatedLesson.getType());
+    }
+
+    // Eliminar una lección
+    public void deleteLesson(String courseId, String moduleId, String lessonId)
+            throws CourseNotFoundException, ModuleNotFoundException, LessonNotFoundException {
+        Course course = findCourse(courseId);
+        Module module = findModule(course, moduleId);
+        Lesson lesson = findLesson(module, lessonId);
+        module.getLessons().remove(lesson);
+    }
+
+    // Devuelve un String con la estructura de cursos, módulos y lecciones en forma
+    // de árbol
     public String getCoursesAsString() {
         StringBuilder sb = new StringBuilder();
         for (Course course : courses) {
@@ -75,7 +150,14 @@ public class CoursesManager {
         return sb.toString();
     }
 
+    // Obtener la lista completa de cursos (inmutable para proteger estado interno)
     public List<Course> getCourses() {
-        return courses;
+        return List.copyOf(courses);
     }
+
+    public void setCourses(List<Course> newCourses) {
+        courses.clear();
+        courses.addAll(newCourses);
+    }
+
 }
