@@ -5,6 +5,11 @@ import co.edu.uptcsoft.model.Lesson;
 import co.edu.uptcsoft.model.Course;
 import co.edu.uptcsoft.model.CoursesManager;
 import co.edu.uptcsoft.persistence.CourseDAO;
+import co.edu.uptcsoft.test.CourseNotFoundException;
+import co.edu.uptcsoft.test.DuplicateCourseException;
+import co.edu.uptcsoft.test.DuplicateLessonException;
+import co.edu.uptcsoft.test.DuplicateModuleException;
+import co.edu.uptcsoft.test.ModuleNotFoundException;
 
 import java.util.List;
 
@@ -17,20 +22,26 @@ public class CourseController {
         courseDAO = new CourseDAO();
     }
 
-    // CRUD Cursos
-    public void addCourse(String newCourseId, String newCourseTitle) {
+    public void addCourse(String newCourseId, String newCourseTitle) throws DuplicateCourseException {
         Course newCourse = new Course(newCourseId, newCourseTitle);
+        for (Course c : courseManager.getCourses()) {
+            if (c.getId().equals(newCourseId)) {
+                throw new DuplicateCourseException(newCourseId);
+            }
+        }
         courseManager.addCourse(newCourse);
     }
 
-    public void addModule(String courseId, String newModuleId, String newCurseTitle) {
+    public void addModule(String courseId, String newModuleId, String newCurseTitle)
+            throws DuplicateModuleException, CourseNotFoundException {
         Module newModule = new Module(newModuleId, newCurseTitle);
         courseManager.addModule(courseId, newModule);
     }
 
-    public void addLesson(String courseId, String moduleId, String newLessoId, String newLessonTitle,
-            String newLessonType) {
-        Lesson newLesson = new Lesson(newLessoId, newLessonTitle, newLessonType);
+    public void addLesson(String courseId, String moduleId, String newLessonId,
+            String newLessonTitle, String newLessonType)
+            throws DuplicateLessonException, CourseNotFoundException, ModuleNotFoundException {
+        Lesson newLesson = new Lesson(newLessonId, newLessonTitle, newLessonType);
         courseManager.addLesson(courseId, moduleId, newLesson);
     }
 

@@ -3,6 +3,11 @@ package co.edu.uptcsoft.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import co.edu.uptcsoft.test.CourseNotFoundException;
+import co.edu.uptcsoft.test.DuplicateLessonException;
+import co.edu.uptcsoft.test.DuplicateModuleException;
+import co.edu.uptcsoft.test.ModuleNotFoundException;
+
 public class CoursesManager {
     private List<Course> courses;
 
@@ -14,38 +19,48 @@ public class CoursesManager {
         courses.add(course);
     }
 
-    public boolean addModule(String courseId, Module module) {
-        Course course = findCourse(courseId);
-        if (course != null) {
-            course.addModule(module);
-            return true;
-        } else {
-            return false;
-        }
-    }
+    public void addModule(String courseId, Module module)
+            throws DuplicateModuleException, CourseNotFoundException {
+        Course course = findCourse(courseId); // lanza excepción si no existe
 
-    public boolean addLesson(String courseId, String moduleId, Lesson lesson) {
-        Course course = findCourse(courseId);
-        if (course != null) {
-            for (Module mod : course.getModules()) {
-                if (mod.getId().equals(moduleId)) {
-                    mod.addLesson(lesson);
-                    return true;
-                }
+        for (Module m : course.getModules()) {
+            if (m.getId().equals(module.getId())) {
+                throw new DuplicateModuleException(module.getId());
             }
         }
-        return false;
+
+        course.addModule(module);
     }
 
-    public Course findCourse(String id) {
-        for (Course c : courses) {
-            if (c.getId().equals(id))
-                return c;
+    public void addLesson(String courseId, String moduleId, Lesson lesson)
+            throws CourseNotFoundException, ModuleNotFoundException, DuplicateLessonException {
+        Course course = findCourse(courseId); // lanza excepción si no existe
+
+        for (Module mod : course.getModules()) {
+            if (mod.getId().equals(moduleId)) {
+                for (Lesson l : mod.getLessons()) {
+                    if (l.getId().equals(lesson.getId())) {
+                        throw new DuplicateLessonException(lesson.getId());
+                    }
+                }
+                mod.addLesson(lesson);
+                return;
+            }
         }
-        return null;
+
+        throw new ModuleNotFoundException(moduleId);
     }
 
-    // Devuelve un String de los cursos como un arbol
+    public Course findCourse(String id) throws CourseNotFoundException {
+        for (Course c : courses) {
+            if (c.getId().equals(id)) {
+                return c;
+            }
+        }
+        throw new CourseNotFoundException(id);
+    }
+
+    // Devuelve un String de los cursos como un árbol
     public String getCoursesAsString() {
         StringBuilder sb = new StringBuilder();
         for (Course course : courses) {
@@ -60,7 +75,6 @@ public class CoursesManager {
         return sb.toString();
     }
 
-    // Devuelve la lista completa (para poblar tablas en UI)
     public List<Course> getCourses() {
         return courses;
     }
