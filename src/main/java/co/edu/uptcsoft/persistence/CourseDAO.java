@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CourseDAO {
-    private static final String file = "Courses.json";
+    private static final String file = "src\\main\\resources\\co\\edu\\uptcsoft\\Courses.json";
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     // Guardar lista completa de cursos
