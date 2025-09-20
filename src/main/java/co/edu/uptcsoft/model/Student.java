@@ -5,15 +5,15 @@ public class Student {
     private String name;
     private String email;
 
-    @Override
-    public String toString() {
-        return "Student [id=" + id + ", name=" + name + ", email=" + email + "]";
-    }
-
     public Student(int id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Student [id=" + id + ", name=" + name + ", email=" + email + "]";
     }
 
     public int getId() {
@@ -39,5 +39,4 @@ public class Student {
     public void setEmail(String email) {
         this.email = email;
     }
-
 }

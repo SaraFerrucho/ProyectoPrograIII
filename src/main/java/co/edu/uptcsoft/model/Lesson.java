@@ -5,21 +5,15 @@ public class Lesson {
     private String title;
     private String type; // video, text, quiz...
 
-    @Override
-    public String toString() {
-        return "Lesson [id=" + id + ", title=" + title + ", type=" + type + "]";
-    }
-
-    public Lesson() {
-        id = "";
-        title = "";
-        type = "";
-    }
-
     public Lesson(String id, String title, String type) {
         this.id = id;
         this.title = title;
         this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "Lesson [id=" + id + ", title=" + title + ", type=" + type + "]";
     }
 
     public String getId() {
@@ -45,5 +39,4 @@ public class Lesson {
     public void setType(String type) {
         this.type = type;
     }
-
 }

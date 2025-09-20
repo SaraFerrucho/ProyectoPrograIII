@@ -1,8 +1,12 @@
 package co.edu.uptcsoft.controller;
 
-import co.edu.uptcsoft.model.*;
 import co.edu.uptcsoft.model.Module;
+import co.edu.uptcsoft.model.Lesson;
+import co.edu.uptcsoft.model.Course;
+import co.edu.uptcsoft.model.CoursesManager;
 import co.edu.uptcsoft.persistence.CourseDAO;
+
+import java.util.List;
 
 public class CourseController {
     private CoursesManager courseManager;
@@ -22,20 +26,23 @@ public class CourseController {
         courseManager.addModule(courseId, module);
     }
 
-    public void addLesson(String moduleId, Lesson lesson) {
-        courseManager.addLesson(moduleId, lesson);
+    public void addLesson(String courseId, String moduleId, Lesson lesson) {
+        courseManager.addLesson(courseId, moduleId, lesson);
     }
 
-    public void printTree() {
-        courseManager.printTree();
+    public void printCourses() {
+        courseManager.printCourses();
     }
 
-    // Persistencia
     public void saveData() {
-        courseDAO.save(courseManager.getRoot());
+        courseDAO.save(courseManager.getCourses());
     }
 
     public void loadData() {
-        courseManager.setRoot(courseDAO.load());
+        List<Course> loadedCourses = courseDAO.load();
+        if (loadedCourses != null) {
+            courseManager.getCourses().clear();
+            courseManager.getCourses().addAll(loadedCourses);
+        }
     }
 }

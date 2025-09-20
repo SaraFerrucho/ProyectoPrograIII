@@ -1,79 +1,61 @@
 package co.edu.uptcsoft.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class CoursesManager {
-    private TreeNode<Object> root; // Raíz genérica del árbol
+    private List<Course> courses;
 
     public CoursesManager() {
-        root = new TreeNode<>("Catálogo de Cursos");
+        courses = new ArrayList<>();
     }
-
-    public TreeNode<Object> getRoot() {
-        return root;
-    }
-
-      public void setRoot(TreeNode<Object> root) {
-        this.root = root;
-    }
-
-    // Agregar un nuevo curso al catálogo
     public void addCourse(Course course) {
-        TreeNode<Object> courseNode = new TreeNode<>(course);
-        root.addChild(courseNode);
+        courses.add(course);
     }
 
-    // Agregar un módulo a un curso específico
     public void addModule(String courseId, Module module) {
-        TreeNode<?> courseNode = findNode(root, courseId);
-        if (courseNode != null && courseNode.getData() instanceof Course) {
-            ((TreeNode<Object>) courseNode).addChild(new TreeNode<>(module));
+        Course course = findCourse(courseId);
+        if (course != null) {
+            course.addModule(module);
         } else {
             System.out.println("Curso no encontrado con ID: " + courseId);
         }
     }
 
-    // Agregar una lección a un módulo específico
-    public void addLesson(String moduleId, Lesson lesson) {
-        TreeNode<?> moduleNode = findNode(root, moduleId);
-        if (moduleNode != null && moduleNode.getData() instanceof Module) {
-            ((TreeNode<Object>) moduleNode).addChild(new TreeNode<>(lesson));
-        } else {
-            System.out.println("Módulo no encontrado con ID: " + moduleId);
+    public void addLesson(String courseId, String moduleId, Lesson lesson) {
+        Course course = findCourse(courseId);
+        if (course != null) {
+            for (Module mod : course.getModules()) {
+                if (mod.getId().equals(moduleId)) {
+                    mod.addLesson(lesson);
+                    return;
+                }
+            }
         }
+        System.out.println("Módulo no encontrado con ID: " + moduleId);
     }
 
-    // Buscar un nodo por ID (recursivo)
-    public TreeNode<?> findNode(TreeNode<?> current, String id) {
-        Object data = current.getData();
-        String currentId = null;
-
-        if (data instanceof Course)
-            currentId = ((Course) data).getId();
-        else if (data instanceof Module)
-            currentId = ((Module) data).getId();
-        else if (data instanceof Lesson)
-            currentId = ((Lesson) data).getId();
-
-        if (currentId != null && currentId.equals(id))
-            return current;
-
-        for (TreeNode<?> child : current.getChildren()) {
-            TreeNode<?> found = findNode(child, id);
-            if (found != null)
-                return found;
+    public Course findCourse(String id) {
+        for (Course c : courses) {
+            if (c.getId().equals(id)) return c;
         }
         return null;
     }
 
-    public void printTree() {
-        printTreeRec(root, 0);
+    public void printCourses() {
+        for (Course course : courses) {
+            System.out.println(course);
+            for (Module module : course.getModules()) {
+                System.out.println("  " + module);
+                for (Lesson lesson : module.getLessons()) {
+                    System.out.println("    " + lesson);
+                }
+            }
+        }
     }
 
-    private void printTreeRec(TreeNode<?> node, int level) {
-        for (int i = 0; i < level; i++)
-            System.out.print("  ");
-        System.out.println(node.getData());
-        for (TreeNode<?> child : node.getChildren()) {
-            printTreeRec(child, level + 1);
-        }
+    public List<Course> getCourses() {
+        return courses;
     }
 }
