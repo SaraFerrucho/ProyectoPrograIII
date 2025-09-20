@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" 
+           fx:controller="co.edu.uptcsoft.controller.LessonListController"
+            prefWidth="900" prefHeight="600"
+            style="-fx-background-color: #a6d8f2;">
+
+    <!-- barra superior -->
+    <HBox spacing="10" alignment="CENTER_LEFT" 
+          style="-fx-background-color: #009fe3;"
+          prefHeight="50" AnchorPane.topAnchor="0" 
+          AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+        
+        <!-- boton retroceder -->
+        <Button fx:id="btnBack" text="⬅" 
+                style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 18;" />
+
+        <!-- titulo -->
+        <Label text="LECCIONES" 
+               style="-fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold;"
+               AnchorPane.rightAnchor="20.0" />
+    </HBox>
+
+    <!-- contenido principal -->
+    <HBox spacing="30" padding="20" 
+          AnchorPane.topAnchor="60" AnchorPane.leftAnchor="20" 
+          AnchorPane.rightAnchor="20" AnchorPane.bottomAnchor="20">
+
+        <!-- tabla de lecciones -->
+        <VBox spacing="10" HBox.hgrow="ALWAYS">
+
+            <Label text="Listado de lecciones"
+                   style="-fx-font-size: 14; -fx-font-weight: bold;" />
+
+            <!-- seleccionar todas -->
+            <CheckBox fx:id="chkSelectAll" text="Marcar todas" />
+
+            <TableView fx:id="tableLessons" prefHeight="400" prefWidth="500">
+                <columns>
+                    <!-- columna checkbox -->
+                    <TableColumn fx:id="colSelect" text="✓" prefWidth="50" />
+                    <!-- nombre leccion -->
+                    <TableColumn fx:id="colLessonName" text="Lección" prefWidth="250" />
+                    <!-- tipo de leccion -->
+                    <TableColumn fx:id="colLessonType" text="Tipo" prefWidth="150" />
+                </columns>
+            </TableView>
+        </VBox>
+
+        <!-- panel de botones -->
+        <VBox spacing="20" alignment="CENTER_RIGHT" prefWidth="200">
+
+            <Button fx:id="btnAddLesson" text="añadir lección" 
+                    style="-fx-background-color: #009fe3; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 10 20;" />
+
+            <Button fx:id="btnDeleteLesson" text="eliminar lección" 
+                    style="-fx-background-color: #009fe3; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 10 20;" />
+
+            <Button fx:id="btnEditLesson" text="editar tipo de lección" 
+                    style="-fx-background-color: #009fe3; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 20; -fx-padding: 10 20;" />
+        </VBox>
+    </HBox>
+</AnchorPane>

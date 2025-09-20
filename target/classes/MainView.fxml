@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="co.edu.uptcsoft.controller.MainViewController"
+
+            prefWidth="900" prefHeight="600">
+
+    <!-- BARRA SUPERIOR -->
+    <top>
+        <HBox spacing="20" style="-fx-background-color: #0099ff; -fx-padding: 15;" alignment="CENTER_LEFT">
+            <Button fx:id="menuButton" text="ℹ️ INFORMACIÓN" 
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 18; -fx-font-weight: bold;"/>
+            <Label text="BIENVENIDOS AL SISTEMA DE GESTOR DE CURSOS ONLINE"
+                   style="-fx-text-fill: white; -fx-font-size: 18; -fx-font-weight: bold;" 
+                   HBox.hgrow="ALWAYS"/>
+        </HBox>
+    </top>
+
+    <!-- CONTENIDO CENTRAL -->
+    <center>
+        <GridPane hgap="40" vgap="40" alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints halignment="CENTER"/>
+                <ColumnConstraints halignment="CENTER"/>
+            </columnConstraints>
+
+            <!-- BOTÓN CURSOS -->
+            <Button fx:id="btnCursos" text="CURSOS" prefWidth="200" prefHeight="120"
+                    style="-fx-background-color: #0099ff; -fx-text-fill: white; -fx-font-size: 18; -fx-background-radius: 20;"/>
+
+            <!-- BOTÓN ESTUDIANTES -->
+            <Button fx:id="btnEstudiantes" text="ESTUDIANTES" prefWidth="200" prefHeight="120"
+                    style="-fx-background-color: #0099ff; -fx-text-fill: white; -fx-font-size: 18; -fx-background-radius: 20;"
+                    GridPane.columnIndex="1"/>
+
+            <!-- BOTÓN ESTADÍSTICAS -->
+            <Button fx:id="btnEstadisticas" text="ESTADISTICAS" prefWidth="200" prefHeight="120"
+                    style="-fx-background-color: #0099ff; -fx-text-fill: white; -fx-font-size: 18; -fx-background-radius: 20;"
+                    GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        </GridPane>
+    </center>
+
+    <!-- BOTÓN SALIR -->
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" style="-fx-padding: 20;">
+            <Button fx:id="btnSalir" text="SALIR" prefWidth="100" prefHeight="50"
+                    style="-fx-background-color: red; -fx-text-fill: white; -fx-font-size: 16; -fx-background-radius: 30;"/>
+        </HBox>
+    </bottom>
+
+    <!-- MENÚ DESPLEGABLE OCULTO -->
+    <left>
+        <VBox fx:id="menuLateral" spacing="15" alignment="TOP_CENTER" 
+              style="-fx-background-color: #00aaff; -fx-padding: 20;" prefWidth="200" visible="false" managed="false">
+            <Label text="ACERCA DE...." style="-fx-text-fill: white; -fx-font-size: 16; -fx-font-weight: bold;"/>
+            <Label text="Versión 1.0" style="-fx-text-fill: white; -fx-font-size: 14;"/>
+            <Label text="Desarrollado por: Sara ferrucho, Javier Nova, Martin varela" style="-fx-text-fill: white; -fx-font-size: 14;"/>
+        </VBox>
+    </left>
+
+</BorderPane>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="co.edu.uptcsoft.controller.ModuleListController"
+            prefWidth="900" prefHeight="600">
+
+    <!-- BARRA SUPERIOR -->
+    <top>
+        <HBox spacing="10" style="-fx-background-color: #0099ff; -fx-padding: 10;" alignment="CENTER_LEFT">
+            <Button fx:id="btnBack" text="⬅" prefWidth="40" prefHeight="40"
+                    style="-fx-background-color: white; -fx-text-fill: #0099ff; -fx-font-size: 18; -fx-font-weight: bold; -fx-background-radius: 5;"/>
+            <Label text="MÓDULOS" style="-fx-text-fill: white; -fx-font-size: 20; -fx-font-weight: bold;"/>
+        </HBox>
+    </top>
+
+    <!-- CONTENIDO CENTRAL -->
+    <center>
+        <HBox spacing="20" alignment="CENTER" style="-fx-padding: 20;">
+            
+            <!-- TABLA DE MÓDULOS -->
+            <VBox spacing="10" alignment="TOP_CENTER">
+                <Label text="LISTADO DE MÓDULOS" 
+                       style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #333;"/>
+                <TableView fx:id="tableModules" prefWidth="500" prefHeight="400">
+                    <columns>
+                        <TableColumn fx:id="colModuleName" text="Módulo" prefWidth="200"/>
+                        <TableColumn fx:id="colDescription" text="Descripción" prefWidth="300"/>
+                    </columns>
+                </TableView>
+            </VBox>
+
+            <!-- BOTONES -->
+            <VBox spacing="20" alignment="CENTER_LEFT">
+                <Button fx:id="btnViewLessons" text="Ver lecciones" prefWidth="150" prefHeight="40"
+                        style="-fx-background-color: #0099ff; -fx-text-fill: white; -fx-font-size: 14; -fx-background-radius: 20;"/>
+                <Button fx:id="btnAddModule" text="Añadir módulo" prefWidth="150" prefHeight="40"
+                        style="-fx-background-color: #0099ff; -fx-text-fill: white; -fx-font-size: 14; -fx-background-radius: 20;"/>
+            </VBox>
+        </HBox>
+    </center>
+</BorderPane>
