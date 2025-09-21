@@ -64,6 +64,7 @@ public class CourseListController {
             ex.printStackTrace();
         }
     }
+    
 
     // volver al menú principal
     private void goBackToMain() {
