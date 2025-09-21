@@ -1,0 +1,29 @@
+[
+  {
+    "id": "C1",
+    "title": "Curso de Java",
+    "modules": [
+      {
+        "id": "M1",
+        "title": "Introducción",
+        "lessons": [
+          {"id": "L1", "title": "Hola Mundo", "type": "video"},
+          {"id": "L2", "title": "Variables", "type": "lectura"}
+        ]
+      }
+    ]
+  },
+  {
+    "id": "C2",
+    "title": "Curso de Python",
+    "modules": [
+      {
+        "id": "M1",
+        "title": "Fundamentos",
+        "lessons": [
+          {"id": "L1", "title": "Sintaxis básica", "type": "video"}
+        ]
+      }
+    ]
+  }
+]

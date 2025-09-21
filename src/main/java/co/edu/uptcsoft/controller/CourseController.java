@@ -1,10 +1,13 @@
 package co.edu.uptcsoft.controller;
 
-import co.edu.uptcsoft.model.Module;
-import co.edu.uptcsoft.model.Lesson;
+import java.util.List;
+
 import co.edu.uptcsoft.model.Course;
 import co.edu.uptcsoft.model.CoursesManager;
+import co.edu.uptcsoft.model.Lesson;
+import co.edu.uptcsoft.model.Module;
 import co.edu.uptcsoft.persistence.CourseDAO;
+import co.edu.uptcsoft.service.ProgressService;
 import co.edu.uptcsoft.test.CourseNotFoundException;
 import co.edu.uptcsoft.test.DuplicateCourseException;
 import co.edu.uptcsoft.test.DuplicateLessonException;
@@ -12,15 +15,16 @@ import co.edu.uptcsoft.test.DuplicateModuleException;
 import co.edu.uptcsoft.test.LessonNotFoundException;
 import co.edu.uptcsoft.test.ModuleNotFoundException;
 
-import java.util.List;
-
 public class CourseController {
     private CoursesManager courseManager;
     private CourseDAO courseDAO;
 
+    private ProgressService progressService;
+
     public CourseController() {
         courseManager = new CoursesManager();
         courseDAO = new CourseDAO();
+        progressService = new ProgressService(courseManager); 
     }
 
     // Métodos privados para validación
@@ -148,5 +152,29 @@ public class CourseController {
         if (loadedCourses != null) {
             courseManager.setCourses(loadedCourses);
         }
+    }
+    // ==== Progreso (expuesto al menú) ====
+
+    /** Marcar una lección como completada */
+    public void markCompleted(int studentId, String courseId, String lessonId) {
+        progressService.markLessonCompleted(studentId, courseId, lessonId);
+    }
+
+    /** Desmarcar una lección */
+    public void unmarkCompleted(int studentId, String courseId, String lessonId) {
+        progressService.unmarkLesson(studentId, courseId, lessonId);
+    }
+
+    /** Mostrar porcentaje y estado por módulo */
+    public void showProgress(int studentId, String courseId) {
+    String report = progressService.courseProgressReport(studentId, courseId);
+    System.out.print(report); // imprime el reporte completo
+}
+    public double getCoursePercentage(int studentId, String courseId) {
+        return progressService.coursePercentage(studentId, courseId);
+    }
+
+    public java.util.Map<String, String> getModuleStatuses(int studentId, String courseId) {
+        return progressService.moduleStatuses(studentId, courseId);
     }
 }

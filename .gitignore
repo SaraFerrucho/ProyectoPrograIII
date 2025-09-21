@@ -1,0 +1,14 @@
+# Ignorar directorio de compilación
+target/
+
+# Archivos compilados
+*.class
+
+# Logs
+*.log
+
+# Archivos temporales del sistema/IDE
+.DS_Store
+*.iml
+.idea/
+*.swp

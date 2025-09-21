@@ -1,0 +1,17 @@
+[
+  {
+    "id": 101,
+    "name": "Juan Pérez",
+    "email": "juan@uni.edu"
+  },
+  {
+    "id": 102,
+    "name": "Javier Ruiz",
+    "email": "jruiz@uni.edu"
+  },
+  {
+    "id": 103,
+    "name": "María P.",
+    "email": "maria@uni.edu"
+  }
+]
