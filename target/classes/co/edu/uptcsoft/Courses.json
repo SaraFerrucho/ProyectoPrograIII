@@ -1,0 +1,178 @@
+[
+  {
+    "data": {
+      "id": "C1",
+      "title": "Curso de Programación Básica"
+    },
+    "children": [
+      {
+        "data": {
+          "id": "M1",
+          "title": "Introducción"
+        },
+        "children": [
+          {
+            "data": {
+              "id": "L1",
+              "title": "Historia de la Programación",
+              "type": "TEORICA"
+            },
+            "children": []
+          },
+          {
+            "data": {
+              "id": "L2",
+              "title": "Primeros pasos con Java",
+              "type": "PRACTICA"
+            },
+            "children": []
+          }
+        ]
+      },
+      {
+        "data": {
+          "id": "M2",
+          "title": "Estructuras Básicas"
+        },
+        "children": [
+          {
+            "data": {
+              "id": "L3",
+              "title": "Variables y Tipos de Datos",
+              "type": "TEORICA"
+            },
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "id": "C2",
+      "title": "Curso de Bases de Datos"
+    },
+    "children": [
+      {
+        "data": {
+          "id": "M1",
+          "title": "Fundamentos"
+        },
+        "children": [
+          {
+            "data": {
+              "id": "L1",
+              "title": "Modelo Relacional",
+              "type": "TEORICA"
+            },
+            "children": []
+          }
+        ]
+      },
+      {
+        "data": {
+          "id": "M2",
+          "title": "SQL Básico"
+        },
+        "children": [
+          {
+            "data": {
+              "id": "L2",
+              "title": "Consultas SELECT",
+              "type": "PRACTICA"
+            },
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "id": "C3",
+      "title": "Curso de Desarrollo Web"
+    },
+    "children": [
+      {
+        "data": {
+          "id": "M1",
+          "title": "Frontend"
+        },
+        "children": [
+          {
+            "data": {
+              "id": "L1",
+              "title": "HTML y CSS",
+              "type": "TEORICA"
+            },
+            "children": []
+          },
+          {
+            "data": {
+              "id": "L2",
+              "title": "Introducción a JavaScript",
+              "type": "PRACTICA"
+            },
+            "children": []
+          }
+        ]
+      },
+      {
+        "data": {
+          "id": "M2",
+          "title": "Backend"
+        },
+        "children": [
+          {
+            "data": {
+              "id": "L3",
+              "title": "Conceptos de Servidores",
+              "type": "TEORICA"
+            },
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "data": {
+      "id": "C4",
+      "title": "Curso de Inteligencia Artificial"
+    },
+    "children": [
+      {
+        "data": {
+          "id": "M1",
+          "title": "Introducción a la IA"
+        },
+        "children": [
+          {
+            "data": {
+              "id": "L1",
+              "title": "Historia de la IA",
+              "type": "TEORICA"
+            },
+            "children": []
+          }
+        ]
+      },
+      {
+        "data": {
+          "id": "M2",
+          "title": "Aprendizaje Automático"
+        },
+        "children": [
+          {
+            "data": {
+              "id": "L2",
+              "title": "Redes Neuronales Básicas",
+              "type": "PRACTICA"
+            },
+            "children": []
+          }
+        ]
+      }
+    ]
+  }
+]

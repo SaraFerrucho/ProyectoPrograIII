@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" 
+            fx:controller="co.edu.uptcsoft.viewController.LessonFormController"
+            prefWidth="400" prefHeight="250">
+
+    <!-- TOP BAR -->
+    <top>
+        <HBox spacing="10" alignment="CENTER_LEFT"
+              style="-fx-background-color: #2c3e50; -fx-padding: 10;">
+            <Label text="Formulario de Lección" 
+                   style="-fx-text-fill: white; -fx-font-size: 18; -fx-font-weight: bold;"/>
+        </HBox>
+    </top>
+
+    <!-- CENTER -->
+    <center>
+        <VBox spacing="15" alignment="CENTER_LEFT" style="-fx-padding: 20;">
+            <Label text="Título:" style="-fx-font-size: 14;"/>
+            <TextField fx:id="txtTitle" prefWidth="300"/>
+
+            <Label text="Tipo de lección:" style="-fx-font-size: 14;"/>
+            <ChoiceBox fx:id="choiceType" prefWidth="200"/>
+        </VBox>
+    </center>
+
+    <!-- BOTTOM BUTTONS -->
+    <bottom>
+        <HBox spacing="20" alignment="CENTER" style="-fx-padding: 15;">
+            <Button fx:id="btnSave" text="Guardar" prefWidth="100"
+                    style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-background-radius: 20;"/>
+            <Button fx:id="btnCancel" text="Cancelar" prefWidth="100"
+                    style="-fx-background-color: #c0392b; -fx-text-fill: white; -fx-background-radius: 20;"/>
+        </HBox>
+    </bottom>
+</BorderPane>

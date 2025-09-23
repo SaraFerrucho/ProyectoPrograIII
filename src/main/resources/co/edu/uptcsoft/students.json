@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Javier nova",
+    "email": "javier@gmail"
+  },
+  {
+    "id": 2,
+    "name": "María Pérez",
+    "email": "maria.perez@uni.edu"
+  },
+  {
+    "id": 3,
+    "name": "Carlos Gómez",
+    "email": "carlos.gomez@uni.edu"
+  },
+  {
+    "id": 4,
+    "name": "Ana Torres",
+    "email": "ana.torres@uni.edu"
+  },
+  {
+    "id": 5,
+    "name": "Luis Fernández",
+    "email": "luis.fernandez@uni.edu"
+  },
+  {
+    "id": 6,
+    "name": "Sofía Ramírez",
+    "email": "sofia.ramirez@uni.edu"
+  },
+  {
+    "id": 7,
+    "name": "Miguel Castro",
+    "email": "miguel.castro@uni.edu"
+  },
+  {
+    "id": 8,
+    "name": "pedro",
+    "email": "perez@gmail.com"
+  }
+]

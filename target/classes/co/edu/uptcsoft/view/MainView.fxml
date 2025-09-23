@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="co.edu.uptcsoft.viewController.MainViewController"
+            prefWidth="900" prefHeight="600">
+
+    <!-- BARRA SUPERIOR -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: #092e47ff; -fx-padding: 15;">
+            <Label text="BIENVENIDOS AL SISTEMA DE GESTOR DE CURSOS ONLINE"
+                   style="-fx-text-fill: white; -fx-font-size: 18px;"/>
+        </HBox>
+    </top>
+
+    <!-- BOTONES CENTRALES -->
+    <center>
+        <HBox alignment="CENTER" spacing="100">
+            
+            <Button fx:id="btnCourses" text="Cursos" onAction="#handleCourses"
+                    contentDisplay="TOP" style="-fx-background-color: #1abc9c; -fx-text-fill: white; -fx-font-size: 14px;">
+                <graphic>
+                    <ImageView fitHeight="150" fitWidth="150" preserveRatio="true">
+                        <image>
+                            <Image url="@/co/edu/uptcsoft/icons/courses.png"/>
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+ 
+            <Button fx:id="btnStudents" text="Estudiantes" onAction="#handleStudents"
+                    contentDisplay="TOP" style="-fx-background-color: #9b59b6; -fx-text-fill: white; -fx-font-size: 14px;">
+                <graphic>
+                    <ImageView fitHeight="150" fitWidth="150" preserveRatio="true">
+                        <image>
+                            <Image url="@/co/edu/uptcsoft/icons/students.png"/>
+                        </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+
+            <Button fx:id="btnStatistics"
+                    text="Estadísticas"
+                    onAction="#handleStatistics"
+                    contentDisplay="TOP"
+                    style="-fx-background-color: #e67e22; -fx-text-fill: white; -fx-font-size: 14px;">
+                <graphic>
+                    <ImageView fitHeight="150" fitWidth="150" preserveRatio="true">
+                    <image>
+                        <Image url="@/co/edu/uptcsoft/icons/stats.png"/>
+                    </image>
+                    </ImageView>
+                </graphic>
+            </Button>
+
+        </HBox>
+    
+</center>
+    <!-- BOTÓN SALIR -->
+    <bottom>
+        <HBox alignment="BOTTOM_LEFT">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <Button fx:id="btnExit" text="Salir" onAction="#handleExit"
+                    style="-fx-background-color: #c0392b; -fx-text-fill: white; -fx-background-radius: 20;"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>
+

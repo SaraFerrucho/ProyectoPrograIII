@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="co.edu.uptcsoft.viewController.StadisticsViewController"
+            prefWidth="900" prefHeight="600">
+
+    <!-- TOP -->
+    <top>
+        <HBox spacing="10" alignment="CENTER_LEFT"
+              style="-fx-background-color:#2c3e50; -fx-padding:10;">
+            <Button text="← Volver" onAction="#goBackToMain"
+                    style="-fx-background-color:#e74c3c; -fx-text-fill:white;"/>
+            <Label text="ESTADÍSTICAS"
+                   style="-fx-text-fill:white; -fx-font-size:20; -fx-font-weight:bold;"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblStudent" style="-fx-text-fill:white;"/>
+        </HBox>
+    </top>
+
+    <!-- CENTER -->
+    <center>
+        <VBox alignment="CENTER" spacing="14" style="-fx-padding: 20;">
+            <Label text="Progreso del estudiante por curso (%)"
+                   style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #34495e;"/>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="Estudiante:"/>
+                <ComboBox fx:id="cmbStudent" prefWidth="260"/>
+                <Button text="Refrescar" onAction="#onRefresh"/>
+                <Button text="Detalle por módulo" onAction="#onShowDetail"/>
+            </HBox>       
+
+            <BarChart fx:id="barChart" prefWidth="820" prefHeight="460">
+                <xAxis>
+                    <CategoryAxis label="Curso"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis label="Porcentaje completado (%)" upperBound="100" lowerBound="0" tickUnit="10"/>
+
+                </yAxis>
+            </BarChart>
+
+            <HBox spacing="8" alignment="CENTER_LEFT">
+                <Button text="Refrescar" onAction="#onRefresh"/>
+                <Button text="Detalle por módulo" onAction="#onShowDetail"/>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>
