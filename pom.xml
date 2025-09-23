@@ -2,7 +2,11 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>co.edu.uptcsoft</groupId>
+<<<<<<< HEAD
     <artifactId>proyectoarboles2</artifactId>
+=======
+    <artifactId>proyectoprogra</artifactId>
+>>>>>>> ce4c03f78796e33d91b87ff4455f45f1748f3a7a
     <version>1.0-SNAPSHOT</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
